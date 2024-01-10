@@ -1,0 +1,93 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        int[,] matrix = {{ -2, 4, -23 },
+                { 9, 45, -19},
+                { 87, 37, -1} };
+
+        int number = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Sum:");
+        Sum(matrix, number);
+
+        Console.WriteLine("Subtraction:");
+        Subtract(matrix, number);
+
+        Console.WriteLine("Division:");
+        Divide(matrix, number);
+
+        Console.WriteLine("Multiplication:");
+        Multiply(matrix, number);
+    }
+
+    private static void Multiply(int[,] matrix, int number)
+    {
+        int[,] copyMatrix = (int[,])matrix.Clone();
+        for (int i = 0; i < copyMatrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < copyMatrix.GetLength(1); j++)
+            {
+                copyMatrix[i, j] *= number;
+            }
+        }
+        PrintMatrix(copyMatrix);
+    }
+
+    private static void Divide(int[,] matrix, int number)
+    {
+        if (number == 0)
+        {
+            Console.WriteLine("Cannot divide by zero!");
+            return;
+        }
+        int[,] copyMatrix = (int[,])matrix.Clone();
+        for (int i = 0; i < copyMatrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < copyMatrix.GetLength(1); j++)
+            {
+                copyMatrix[i, j] /= number;
+            }
+        }
+        PrintMatrix(copyMatrix);
+    }
+
+    private static void Subtract(int[,] matrix, int number)
+    {
+        int[,] copyMatrix = (int[,])matrix.Clone();
+        for (int i = 0; i < copyMatrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < copyMatrix.GetLength(1); j++)
+            {
+                copyMatrix[i, j] -= number;
+            }
+        }
+        PrintMatrix(copyMatrix);
+    }
+
+    private static void Sum(int[,] matrix, int number)
+    {
+        int[,] copyMatrix = (int[,])matrix.Clone();
+        for (int i = 0; i < copyMatrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < copyMatrix.GetLength(1); j++)
+            {
+                copyMatrix[i, j] += number;
+            }
+        }
+        PrintMatrix(copyMatrix);
+    }
+
+    private static void PrintMatrix(int[,] matrix)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                Console.Write($"{matrix[i, j]} ");
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+}
